@@ -1,41 +1,33 @@
 package queue;
 
+import linkedList.LinkedList;
 import linkedList.Node;
 
-public class Queue<T> {
+public class Queue<E> {
 
-    private Node<T> headNode;
-    private Node<T> tailNode;
+    private LinkedList<E> linkedList;
 
-    public void push(T val){
-        Node<T> tNode = new Node<>(val);
-        if (this.headNode == null) {
-            this.headNode = tNode;
-            this.tailNode = tNode;
-            return;
-        }
-        this.tailNode.setNext(tNode);
-        this.tailNode = tNode;
+    public Queue() {
+        linkedList = new LinkedList<E>();
     }
 
-    public T pop(){
-        if (headNode == null) {
-
-        }
-        Node<T> headNode = this.headNode;
-        T val = headNode.getVal();
-        Node<T> next = headNode.getNext();
-
-        headNode.setVal(null);
-        headNode.setNext(null);
-
-        this.headNode = next;
-
-
-        return val;
+    public void push(E val){
+        this.linkedList.add(val);
     }
 
-    public T peek(){
-        return this.headNode.getVal();
+    public E pop(){
+        E e = peek();
+        this.linkedList.remove(linkedList.getSize()-1);
+        return e;
     }
+
+    public boolean hasNext(){
+        return this.linkedList.getSize() > 0;
+    }
+
+    public E peek(){
+        return this.linkedList.get(this.linkedList.getSize() - 1);
+    }
+
+
 }

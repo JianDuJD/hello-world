@@ -1,45 +1,31 @@
 package stack;
 
+import linkedList.LinkedList;
 import linkedList.Node;
 
 import java.util.Stack;
 
-public class LinkedStack<T> {
+public class LinkedStack<E> {
 
-    private Node<T> node;
+    private LinkedList<E> linkedList;
 
-    private int size;
-
-    public void push(T val){
-        Node<T> node = new Node<T>(val);
-        node.setNext(this.node);
-        this.node = node;
-        this.size++;
+    public void push(E val) {
+        this.linkedList.add(val);
     }
 
-    public T pop(){
-        if (empty()) {
-            throw new EmptyStackException();
-        }
-        Node<T> node = this.node;
-        T val = node.getVal();
-
-        this.node = node.getNext();
-
-        node.setNext(null);
-        node.setVal(null);
-        this.size--;
-        return val;
+    public E pop() {
+        E e = peek();
+        this.linkedList.remove(linkedList.getSize() - 1);
+        return e;
     }
 
-    public boolean empty(){
-        return this.size == 0;
+    public boolean empty() {
+        return this.linkedList.getSize() == 0;
     }
 
-    public T peek(){
-        if (empty()) {
-            throw new EmptyStackException();
-        }
-        return this.node.getVal();
+    public E peek() {
+        E e = peek();
+        this.linkedList.remove(linkedList.getSize() - 1);
+        return e;
     }
 }
