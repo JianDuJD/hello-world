@@ -41,7 +41,6 @@ public class LinkedList<E> {
 
     private Node<E> getNode(int index){
         checkElementIndex(index);
-
         if (index < (size / 2)) {
             Node<E> node = this.headNode.getNext();
             //System.out.println(node.getVal());
@@ -69,11 +68,11 @@ public class LinkedList<E> {
     }
 
     public E getFirst() {
-        return this.headNode.getNext().getVal();
+        return this.headNode.getNext().getItem();
     }
 
     public E getLast() {
-        return this.tailNode.getVal();
+        return this.tailNode.getItem();
     }
 
     private void checkElementIndex(int index) {
@@ -92,6 +91,6 @@ public class LinkedList<E> {
     }
 
     public E get(int index) {
-        return getNode(index).getVal();
+        return getNode(index).getItem();
     }
 }

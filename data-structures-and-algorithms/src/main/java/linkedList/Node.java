@@ -2,7 +2,7 @@ package linkedList;
 
 public class Node<T> {
 
-    private T val;
+    private T item;
     private Node<T> next;
     private Node<T> prev;
 
@@ -14,19 +14,19 @@ public class Node<T> {
         this.prev = prev;
     }
 
-    public Node(T val){
-        this.val = val;
+    public Node(T item){
+        this.item = item;
     };
 
     public Node() {
     }
 
-    public T getVal() {
-        return val;
+    public T getItem() {
+        return item;
     }
 
-    public void setVal(T val) {
-        this.val = val;
+    public void setItem(T item) {
+        this.item = item;
     }
 
     public Node<T> getNext() {
