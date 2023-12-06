@@ -21,6 +21,23 @@ public class LinkedList<E> {
         size++;
     }
 
+    public void add(int index, E element) {
+        checkPositionIndex(index);
+        Node<E> elementNode = new Node<>(element);
+        if (index == 0 || index == this.size) {
+            this.tailNode.setNext(elementNode);
+            elementNode.setPrev(this.tailNode);
+            this.tailNode = elementNode;
+            size++;
+        } else {
+            Node<E> indexNode = getNode(index);
+            elementNode.setNext(indexNode);
+            elementNode.setPrev(indexNode.getPrev());
+            indexNode.setPrev(elementNode);
+            size++;
+        }
+    }
+
     public boolean remove(int index) {
         checkElementIndex(index);
 
@@ -39,7 +56,7 @@ public class LinkedList<E> {
         return true;
     }
 
-    private Node<E> getNode(int index){
+    private Node<E> getNode(int index) {
         checkElementIndex(index);
         if (index < (size / 2)) {
             Node<E> node = this.headNode.getNext();
@@ -59,6 +76,7 @@ public class LinkedList<E> {
             return node;
         }
     }
+
     private void checkPositionIndex(int index) {
         if (index >= 0 && index <= size) {
             return;
