@@ -24,12 +24,21 @@ public class LinkedList<E> {
     public void add(int index, E element) {
         checkPositionIndex(index);
         Node<E> elementNode = new Node<>(element);
-        if (index == 0 || index == this.size) {
+        if (index == this.size) {
             this.tailNode.setNext(elementNode);
             elementNode.setPrev(this.tailNode);
             this.tailNode = elementNode;
             size++;
-        } else {
+        } else if (index == 0 ) {
+            Node<E> headNodeNext = this.headNode.getNext();
+            headNodeNext.setPrev(elementNode);
+            elementNode.setNext(headNodeNext);
+
+            this.headNode.setNext(elementNode);
+            elementNode.setPrev(this.headNode);
+
+            size++;
+        }else {
             Node<E> indexNode = getNode(index);
             elementNode.setNext(indexNode);
             elementNode.setPrev(indexNode.getPrev());
